@@ -1,0 +1,11 @@
+This folder contains the statements made by the main contenders during
+the 2012 US Republican Presidential Primary debates.
+
+transcripts directory - The original debate transcripts as pulled from
+this site: http://www.presidency.ucsb.edu/debates.php.
+
+<candidate name>.txt file - The statements made by a particular
+candidate.  The first line in each block of text is the statement in
+its original form as found in debate transcripts.  The second line is
+this text with tags.  Subsequent lines are nouns extracted from the
+statement and passed through a stemmer.
