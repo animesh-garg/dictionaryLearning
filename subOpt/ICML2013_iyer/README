@@ -1,0 +1,27 @@
+This package contains implementation of the algorithms in the paper 'Fast Semi-differential based Submodular Function Optimization'. 
+
+If you have any questions, contact Rishabh Iyer (rkiyer at u.washington.edu)
+
+This package has three parts, 
+
+1) Unconstrained Submodular function minimization: The gradient based algorithm here provides a preprocessing for exact submodular function minimization, and provides potentially significant speedups when used along with the minimum norm point algorithm.
+
+2) Constrained Submodular Minimization: Minimizing monotone submodular functions subject to combinatorial constraints. Bounded curvature dependent guarantees and good empirical performance.
+
+3) Submodular Maximization: A framework of algorithms. We compare different types of subgradients. 
+
+For running the codes, you will need to download the matlab toolbox sfo, written by Andreas Krause (obtainable at - http://users.cms.caltech.edu/~krausea/sfo/), and add it to the matlab path. 
+
+If you use this code, or any part of it, please cite our paper - 
+
+Fast Semi-differential based Submodular Function Optimization, 
+Rishabh Iyer, Stefanie Jegelka and Jeff Bilmes
+In Proc. ICML, 2013.
+
+
+LICENSE
+
+This code is provided free for non-commercial use under the terms of the GNU General Public License. 
+The current version is the 1.0 and has been released on August 27, 2013. 
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 

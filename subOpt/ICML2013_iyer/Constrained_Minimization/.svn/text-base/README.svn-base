@@ -1,0 +1,35 @@
+Codes for constrained (monotone) submodular minimization. Contains implementation of algorithms MMin-I, the Ellipsoidal Algorithm (from Goemans et al) and a simple modular upper bound based algortithm (See details of the algorithms in Section 5.2 of the paper 'Fast Semi-differential based Submodular function optimization') 
+
+The fast iterative algorithm MMin, is implemented in mmin.m. The first iteration of the algorithm is the modular upper bound minimization algorithm. The Ellipsoidal Approximation is implemented in ellipApp.m
+
+We consider three classes of constraints
+a) Spanning Trees
+b) Shortest Paths
+c) Bipartite Matchings
+
+We also consider four classes of submodular functions on random data - 
+The four classes of submodular functions are (see more details in section 5.3 of the paper.
+(1) concave (square root or log) over modular (CM) (sfo_powmod.m), 
+(2) clustered CM (CCM) (sfo_sqrt_clustered.m)
+(3) worst case-like functions (sfo_worstcase.m)
+
+There are three simulation files - They contain some sample experimental setups for various constrained submodular optimization problems.
+1) experiments_matchings.m (Minimizing monotone submodular functions under bipartite matchings)
+2) experiments_paths.m (Minimizing monotone submodular functions under s-t paths)
+3) experiments_trees.m (Minimizing monotone submodular functions under trees)
+
+For running the codes, you will need to download the matlab toolbox sfo, written by Andreas Krause (obtainable here - http://users.cms.caltech.edu/~krausea/sfo/), and add it to the matlab path. 
+
+If you use this code, or any part of it, please cite our paper - 
+
+Fast Semi-differential based Submodular Function Optimization, 
+Rishabh Iyer, Stefanie Jegelka and Jeff Bilmes
+In Proc. ICML, 2013.
+
+
+LICENSE
+
+This code is provided free for non-commercial use under the terms of the GNU General Public License. 
+The current version is the 1.0 and has been released on August 27, 2013. 
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 

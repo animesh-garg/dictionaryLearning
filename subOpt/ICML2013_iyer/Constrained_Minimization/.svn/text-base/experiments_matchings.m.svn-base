@@ -1,0 +1,96 @@
+% Experiments with 4 classes of submodular costs on bipartite matchings
+% The four classes of submodular functions are (see more details in section 5.3 of the paper.
+% 1) concave (square root or log) over modular (CM) (sfo_powmod.m), 
+% (2) clustered CM (CCM) (sfo_sqrt_clustered.m)
+% (3) Best Set (BS) functions (sfo_bestset.m)
+% (4) worst case-like functions (sfo_worstcase.m)
+
+% Author: Rishabh Iyer (rkiyer@u.washington.edu)
+
+%% Concave over modular function
+n =  8;
+% Clustered graphs
+[~, elist] = makeClGraph(2*n, 0, 2*n + round(2*n*rand()), 2); 
+m = size(elist, 1);
+V = 1:m;
+weights = rand(m, 1);
+a = round(10*rand())/10;
+f = sfo_powmod(weights, a);
+MatO = zeros(n, n);
+for i = 1 : m
+    MatO(elist(i, 1) - n, elist(i, 2)) = weights(i);
+end
+[~, mcostO] = bipartite_matching(MatO);
+CostOPT = power(mcostO, a);
+[~, Costmmin, ~, CostM] = mmin(f, n, elist, 'BM');
+[d] = ellipApp(f, m, 1, 'tmp');
+Matd = zeros(n, n);
+for i = 1 : m
+    Matd(elist(i, 1) - n, elist(i, 2)) = d(i);
+end
+[matchingd, ~] = bipartite_matching(Matd);
+Ad = convert_set(elist, matchingd);
+CostEA = f(Ad);
+
+approxmmin = Costmmin/CostOPT;
+approxM = CostM/CostOPT;
+approxEA = CostEA/CostOPT;
+
+disp(sprintf('Approximation factor of MMin with CM is %f', approxmmin));
+disp(sprintf('Approximation factor of ModUpper with CM is %f', approxM));
+disp(sprintf('Approximation factor of EA with CM is %f', approxEA));
+
+%% Clustered Concave over modular
+n =  8;
+% Clustered graphs
+[~, elist] = makeClGraph(2*n, 0, 2*n + round(2*n*rand()), 2); 
+m = size(elist, 1);
+V = 1:m;
+R = rand_set(elist, n, 'BM');
+weights = 1 + round(ones(1, m));
+f = sfo_sqrt_clustered(weights, V, R);
+[~, Costcmmin, ~, CostcM] = mmin(f, n, elist, 'BM');
+[d] = ellipApp(f, m, 1, 'tmp'); 
+Matd = zeros(n, n);
+for i = 1 : m
+    Matd(elist(i, 1) - n, elist(i, 2)) = d(i);
+end
+[matchingd, ~] = bipartite_matching(Matd);
+Ad = convert_set(elist, matchingd);
+CostEA = f(Ad);
+CostOPT = min(f(R), min(Costmmin, CostEA));
+approxmmin = Costmmin/CostOPT;
+approxM = CostM/CostOPT;
+approxEA = CostEA/CostOPT;
+disp(sprintf('Approximation factor of MMin with CCM is %f', approxmmin));
+disp(sprintf('Approximation factor of ModUpper with CCM is %f', approxM));
+disp(sprintf('Approximation factor of EA with CCM is %f', approxEA));
+
+%% Worst case like functions
+n =  8;
+epsilon = 0.1;
+% Clustered Graph
+[~, elist] = makeClGraph(2*n, 0, 2*n + round(2*n*rand()), 2); 
+m = size(elist, 1);
+V = 1:m;
+R = rand_set(elist, n, 'BM');
+a = m^(0.5 + epsilon)/5;
+b = m^(2*epsilon)/5;
+f = sfo_worstcase(R, V, a, b);
+[~, Costmmin, ~, CostM] = mmin(f, n, elist, 'BM');
+[d] = ellipApp(f, m, 1, 'tmp'); 
+Matd = zeros(n, n);
+for i = 1 : m
+    Matd(elist(i, 1) - n, elist(i, 2)) = d(i);
+end
+[matchingd, ~] = bipartite_matching(Matd);
+Ad = convert_set(elist, matchingd);
+CostEA = f(Ad);
+CostOPT = min(f(R), min(Costmmin, CostEA));
+approxmmin = Costmmin/CostOPT;
+approxM = CostM/CostOPT;
+approxEA = CostEA/CostOPT;
+disp(sprintf('Approximation factor of MMin with WC is %f', approxmmin));
+disp(sprintf('Approximation factor of ModUpper with WC is %f', approxM));
+disp(sprintf('Approximation factor of EA with WC is %f', approxEA));
+
