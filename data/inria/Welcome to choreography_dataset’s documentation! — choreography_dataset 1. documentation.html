@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)https://flowers.inria.fr/choreo/doc/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation</title>
+    
+    <link rel="stylesheet" href="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/sphinxdoc.css" type="text/css">
+    <link rel="stylesheet" href="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/pygments.css" type="text/css">
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/jquery.js"></script>
+    <script type="text/javascript" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/underscore.js"></script>
+    <script type="text/javascript" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/doctools.js"></script>
+    <script type="text/javascript" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/MathJax.js"></script>
+    <link rel="top" title="choreography_dataset 1. documentation" href="https://flowers.inria.fr/choreo/doc/#"> 
+  <style type="text/css"></style></head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="https://flowers.inria.fr/choreo/doc/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li><a href="https://flowers.inria.fr/choreo/doc/#">choreography_dataset 1. documentation</a> »</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="https://flowers.inria.fr/choreo/doc/#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#">Welcome to choreography_dataset’s documentation!</a><ul>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#presentation">Presentation</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#description-of-the-data">Description of the data</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#format">Format</a><ul>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#the-text-format">The text format</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#the-numpy-format">The numpy format</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#the-matlab-format">The Matlab format</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#examples">Examples</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#contact">Contact</a></li>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#appendix">Appendix</a><ul>
+<li><a class="reference internal" href="https://flowers.inria.fr/choreo/doc/#list-of-primitive-dance-motions">List of primitive dance motions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="https://flowers.inria.fr/choreo/doc/_sources/index.txt" rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="">
+  <h3>Quick search</h3>
+    <form class="search" action="https://flowers.inria.fr/choreo/doc/search.html" method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-choreography-dataset-s-documentation">
+<h1>Welcome to choreography_dataset’s documentation!<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#welcome-to-choreography-dataset-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The data presented in this page can be downloaded at <a class="reference external" href="http://flowers.inria.fr/choreography_database.html">http://flowers.inria.fr/choreography_database.html</a>.</p>
+<dl class="docutils">
+<dt>If you use this database in your experiments, please cite the following paper:</dt>
+<dd>Mangin O., Oudeyer P.Y., <strong>Learning to recognize parallel combinations of human motion primitives with linguistic descriptions using non-negative matrix factorization.</strong> <em>To appear in IEEE/RSJ International Conference on Intelligent Robots and Systems</em>, Vilamoura, Algarve (Portugal). (<a class="reference external" href="http://olivier.mangin.com/publi.html#Mangin.2012.IROS">More information</a>, <a class="reference external" href="http://olivier.mangin.com/media/bibtex/Mangin2012.bib">bibtex</a>)</dd>
+</dl>
+<div class="section" id="presentation">
+<h2>Presentation<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#presentation" title="Permalink to this headline">¶</a></h2>
+<p>This database contains choreography motions recorded through a kinect device. These motions have a combinatorial structure: from a given set of primitive dance motions, choreographies are constructed as simultaneous execution of some of these primitive motions.</p>
+<p>Primitive dance motions are chosen from a total set of 48 motions and are spanned over one or two limbs, either the legs (e.g. <em>walk</em>, <em>squat</em>), left or right arm (e.g. <em>wave hand</em>, <em>punch</em>) or both arms (e.g. <em>clap in hands</em>, <em>paddle</em>).</p>
+<p>Complex choreographies are produced as the simultaneous demonstration of two or three of these primitive motion: either one for legs and one for both arm, or one for legs and one for each arm.</p>
+<dl class="docutils">
+<dt>Each example (or record) contained in the dataset consists in two elements:</dt>
+<dd><ul class="first last simple">
+<li>the motion data,</li>
+<li>labels identifying which primitive motions are combined to produce the choreography.</li>
+</ul>
+</dd>
+<dt>3 separate sets of examples are included in this dataset:</dt>
+<dd><ul class="first last simple">
+<li><strong>primitive</strong>: in each example, only one primitive motion is demonstrated, the set of labels associated to each example is thus a singleton (326 examples)</li>
+<li><strong>mixed small</strong>: demonstrations of complex choreographies composed of primitive motions taken in a subset of 16 possible motions (137 examples).</li>
+<li><strong>mixed full</strong>: demonstrations of complex choreographies composed of primitive motions taken in all the possible motions (277 examples).</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="description-of-the-data">
+<h2>Description of the data<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#description-of-the-data" title="Permalink to this headline">¶</a></h2>
+<p>The data has been acquired through a kinect camera and the <a class="reference external" href="http://openni.org/">OpenNI drivers</a>, which yields a stream of values of markers on the body.</p>
+<p>Each example from the dataset is associated to a sequence of 3D positions of each of the 24 markers. Thus for a sequence of length T, the example would corresponds to T*24*3 values.</p>
+<dl class="docutils">
+<dt>The kinect device recognizes the following list of markers:</dt>
+<dd><em>head</em>, <em>neck</em>, <em>waist</em>, <em>left_hip</em>, <em>left_shoulder</em>, <em>left_elbow</em>, <em>left_hand</em>, <em>left_knee</em>, <em>left_foot</em>, <em>left_collar</em>, <em>left_wrist</em>, <em>left_fingertip</em>, <em>left_ankle</em>, <em>right_hip</em>, <em>right_shoulder</em>, <em>right_elbow</em>, <em>right_hand</em>, <em>right_knee</em>, <em>right_foot</em>, <em>right_collar</em>, <em>right_wrist</em>, <em>right_hand</em>, <em>right_fingertip</em>, <em>right_ankle</em></dd>
+<dt>These markers are however not tracked with the same accuracy and it might be better to filter to keep only a subset of these markers. For examples the following list is a good start:</dt>
+<dd><em>head</em>, <em>neck</em>, <em>left_hip</em>, <em>left_shoulder</em>, <em>left_elbow</em>, <em>left_hand</em>, <em>left_knee</em>, <em>left_foot</em>, <em>right_hip</em>, <em>right_shoulder</em>, <em>right_elbow</em>, <em>right_hand</em>, <em>right_knee</em>, <em>right_hand</em>, <em>right_foot</em></dd>
+</dl>
+<p>Labels are provided as lists of one (<em>primitive</em> set), or two or three (other sets) identifiers.</p>
+<p>A list of primitives and their descriptions can be found at the end of this document.</p>
+</div>
+<div class="section" id="format">
+<h2>Format<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#format" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This data is accessible in three data formats:</dt>
+<dd><ul class="first last simple">
+<li><em>text</em></li>
+<li><em>numpy</em></li>
+<li><em>Matlab</em></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="the-text-format">
+<h3>The text format<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#the-text-format" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>The set of examples consists in:</dt>
+<dd><ul class="first last simple">
+<li>a json file describing metadata and labels,</li>
+<li>a directory containing one text file for each example.</li>
+</ul>
+</dd>
+</dl>
+<p>These are distributed in a compressed archive (<em>tar.gz</em>).</p>
+<p>An example of a json file is given below. They all have a similar structure.</p>
+<div class="highlight-json"><pre>{
+"marker-names": [
+    "head",
+    "neck",
+    ...
+],
+"data-dir": "mixed_partial_data",
+"name": "mixed_partial",
+"records": [
+    {
+    "data-id": 0,
+    "labels": [
+        20,
+        26
+    ]
+    },
+    {
+    "data-id": 1,
+    "labels": [
+        19,
+        28
+    ]
+    },
+    ...
+]
+}</pre>
+</div>
+<dl class="docutils">
+<dt>It contains the following data:</dt>
+<dd><ul class="first last simple">
+<li><em>name</em>: name of the set of examples,</li>
+<li><em>marker-names</em>: list of name of the markers in the same order as they appear in data,</li>
+<li><em>data-dir</em>: path to the data directory,</li>
+<li><em>records</em>: list of records. Each record contains:
+- a <em>data-id</em> fields,
+- a <em>labels</em> field containing a list of label as integers.</li>
+</ul>
+</dd>
+</dl>
+<p>For each record listed in th json file there exists a text file in the ‘data-dir’ directory, which name is the ‘data-id’ plus a ‘.txt’ extension.</p>
+<p>The text files contains the sequence of positions of the marker. Each set of values at a given time is given as a line of space separated floating numbers (formated as ‘5.948645401000976562e+01’).</p>
+<p>Each line contains 3 successive values for each marker which are there 3D coordinates, as provided by the OpenNI framework during capture. Thus each line contains 3M values with M the number of markers.</p>
+</div>
+<div class="section" id="the-numpy-format">
+<h3>The numpy format<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#the-numpy-format" title="Permalink to this headline">¶</a></h3>
+<p>In this format each set of examples is described by two files: a json file and a compressed numpy data file (.npz).</p>
+<p>The json file is very similar to the one from the text format, the only difference is that the ‘data-dir’ element is replaced by a ‘data-file’ element containing the path to the data file.</p>
+<p>The data file is a numpy compressed data file storing one array for each example. The name of the array is given by the ‘data-id’ element. Each data array (one for each record) is of shape (T, M, 3) where T is the length of the example and M the number of markers.</p>
+<p>The following code can be used to load a set of example in python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="n">FILE</span> <span class="o">=</span> <span class="s">'path/to/mixed_full.json'</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">FILE</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">meta_file</span><span class="p">:</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">meta_file</span><span class="p">)</span>
+    <span class="c"># meta is a dictionary containing data from the json file</span>
+<span class="n">path_to_data</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">FILE</span><span class="p">),</span> <span class="n">meta</span><span class="p">[</span><span class="s">'data-file'</span><span class="p">])</span>
+<span class="n">loaded_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_to_data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[</span><span class="s">'records'</span><span class="p">]:</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loaded_data</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">'data-id'</span><span class="p">])])</span> <span class="c"># numpy array</span>
+    <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s">'labels'</span><span class="p">])</span> <span class="c"># list of labels as integers</span>
+
+<span class="k">print</span> <span class="s">"Loaded </span><span class="si">%d</span><span class="s"> examples for ``</span><span class="si">%s</span><span class="s">`` set."</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">meta</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">"Each data example is a (T, </span><span class="si">%d</span><span class="s">, 3) array."</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s">'marker-names'</span><span class="p">])</span>
+<span class="k">print</span> <span class="s">"The second dimension corresponds to markers:"</span>
+<span class="k">print</span> <span class="s">"</span><span class="se">\t</span><span class="s">- </span><span class="si">%s</span><span class="s">"</span> <span class="o">%</span> <span class="s">'</span><span class="se">\n\t</span><span class="s">- '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s">'marker-names'</span><span class="p">])</span>
+<span class="k">return</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">meta</span><span class="p">[</span><span class="s">'marker-names'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-matlab-format">
+<h3>The Matlab format<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#the-matlab-format" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>In the Matlab format, a set of examples is described by a single ‘.mat’ file containing the following elements:</dt>
+<dd><ul class="first last simple">
+<li>a ‘name’ variable (string) containing the name of the set of examples,</li>
+<li>a ‘marker_names’ variable containing a list of marker names (strings),</li>
+<li>a ‘data’ variable containing a list of data arrays (one for each record) of size (T, M, 3) where T is the length of the example and M the number of markers,</li>
+<li>a ‘labels’ variable which is a list of list of labels (one list of labels for each example).</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following examples represents choreographies taken from the <strong>mixed full</strong> dataset.</p>
+<img alt="_images/110.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/110.gif">
+<img alt="_images/210.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/210.gif">
+<img alt="_images/310.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/310.gif">
+<img alt="_images/48.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/48.gif">
+<img alt="_images/51.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/51.gif">
+<img alt="_images/61.gif" src="./Welcome to choreography_dataset’s documentation! — choreography_dataset 1. documentation_files/61.gif">
+</div>
+<div class="section" id="contact">
+<h2>Contact<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#contact" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="appendix">
+<h2>Appendix<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#appendix" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="list-of-primitive-dance-motions">
+<h3>List of primitive dance motions<a class="headerlink" href="https://flowers.inria.fr/choreo/doc/#list-of-primitive-dance-motions" title="Permalink to this headline">¶</a></h3>
+<p>A table with illustrations is presented on the <a class="reference internal" href="https://flowers.inria.fr/choreo/doc/prim_illus.html"><em>primitive illustration page</em></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="2%">
+<col width="12%">
+<col width="85%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Id</th>
+<th class="head">Limb(s)</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>right arm</td>
+<td>hold horizontal</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>right arm</td>
+<td>hold vertical (down)</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>right arm</td>
+<td>hold vertical (up)</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>right arm</td>
+<td>from horizontal on side, bend over the head</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>right arm</td>
+<td>raise from horizontal to vertical</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>right arm</td>
+<td>lower from horizontal to vertical</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>right arm</td>
+<td>from horizontal side, bend in front of the torso</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>right arm</td>
+<td>from horizontal side, bent elbow to get vertical forearm toward up</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>right arm</td>
+<td>mimic punching</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>right arm</td>
+<td>hold horizontal and bring from side to front</td>
+</tr>
+<tr class="row-even"><td>11</td>
+<td>right arm</td>
+<td>from horizontal side, bend elbow to get vertical forearm toward down</td>
+</tr>
+<tr class="row-odd"><td>12</td>
+<td>right arm</td>
+<td>from horizontal side, bring hand to shoulder (elbow moving vertically)</td>
+</tr>
+<tr class="row-even"><td>13</td>
+<td>right arm</td>
+<td>hold horizontal and bring from right side to left side</td>
+</tr>
+<tr class="row-odd"><td>14</td>
+<td>right arm</td>
+<td>swing forearm downside with horizontal upper arm</td>
+</tr>
+<tr class="row-even"><td>15</td>
+<td>right arm</td>
+<td>draw circles with arm extended on the right</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>right arm</td>
+<td>wave motion of the arm held, horizontal on the side</td>
+</tr>
+<tr class="row-even"><td>17</td>
+<td>right arm</td>
+<td>wave hand (shoulder level)</td>
+</tr>
+<tr class="row-odd"><td>18</td>
+<td>right arm</td>
+<td>wave hand (over the head)</td>
+</tr>
+<tr class="row-even"><td>19</td>
+<td>both arms</td>
+<td>clap hands (at varying positions)</td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>both arms</td>
+<td>mimic paddling on the left</td>
+</tr>
+<tr class="row-even"><td>21</td>
+<td>both arms</td>
+<td>mimic paddling on the right</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>both arms</td>
+<td>mimic pushing on ski sticks</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>legs</td>
+<td>un-squat</td>
+</tr>
+<tr class="row-odd"><td>24</td>
+<td>legs</td>
+<td>mimic walking</td>
+</tr>
+<tr class="row-even"><td>25</td>
+<td>legs</td>
+<td>stay still</td>
+</tr>
+<tr class="row-odd"><td>26</td>
+<td>legs</td>
+<td>step on the right</td>
+</tr>
+<tr class="row-even"><td>27</td>
+<td>legs</td>
+<td>step on the left</td>
+</tr>
+<tr class="row-odd"><td>28</td>
+<td>right leg</td>
+<td>raise and bend leg to form a flag (or <em>P</em>) shape</td>
+</tr>
+<tr class="row-even"><td>29</td>
+<td>left leg</td>
+<td>raise and bend leg to form a flag (or <em>P</em>) shape</td>
+</tr>
+<tr class="row-odd"><td>30</td>
+<td>left arm</td>
+<td>hold horizontal</td>
+</tr>
+<tr class="row-even"><td>31</td>
+<td>left arm</td>
+<td>hold vertical (down)</td>
+</tr>
+<tr class="row-odd"><td>32</td>
+<td>left arm</td>
+<td>hold vertical (up)</td>
+</tr>
+<tr class="row-even"><td>33</td>
+<td>left arm</td>
+<td>from horizontal on side, bend over the head</td>
+</tr>
+<tr class="row-odd"><td>34</td>
+<td>left arm</td>
+<td>raise from horizontal to vertical</td>
+</tr>
+<tr class="row-even"><td>35</td>
+<td>left arm</td>
+<td>lower from horizontal to vertical</td>
+</tr>
+<tr class="row-odd"><td>36</td>
+<td>left arm</td>
+<td>from horizontal side, bend in front of the torso</td>
+</tr>
+<tr class="row-even"><td>37</td>
+<td>left arm</td>
+<td>from horizontal side, bent elbow to get vertical forearm toward up</td>
+</tr>
+<tr class="row-odd"><td>38</td>
+<td>left arm</td>
+<td>mimic punching</td>
+</tr>
+<tr class="row-even"><td>39</td>
+<td>left arm</td>
+<td>hold horizontal and bring from side to front</td>
+</tr>
+<tr class="row-odd"><td>40</td>
+<td>left arm</td>
+<td>from horizontal side, bend elbow to get vertical forearm toward down</td>
+</tr>
+<tr class="row-even"><td>41</td>
+<td>left arm</td>
+<td>from horizontal side, bring hand to shoulder (elbow moving vertically)</td>
+</tr>
+<tr class="row-odd"><td>42</td>
+<td>left arm</td>
+<td>hold horizontal and bring from left side to right side</td>
+</tr>
+<tr class="row-even"><td>43</td>
+<td>left arm</td>
+<td>swing forearm downside with horizontal upper arm</td>
+</tr>
+<tr class="row-odd"><td>44</td>
+<td>left arm</td>
+<td>draw circles with arm extended on the left</td>
+</tr>
+<tr class="row-even"><td>45</td>
+<td>left arm</td>
+<td>wave motion of the arm held, horizontal on the side</td>
+</tr>
+<tr class="row-odd"><td>46</td>
+<td>left arm</td>
+<td>wave hand (shoulder level)</td>
+</tr>
+<tr class="row-even"><td>47</td>
+<td>left arm</td>
+<td>wave hand (over the head)</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>The small dataset uses the following subset of labels:</dt>
+<dd>1, 5, 6, 10, 19, 20, 21, 22, 23, 24, 25, 28, 30, 38, 40, 43</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="https://flowers.inria.fr/choreo/doc/genindex.html" title="General Index">index</a></li>
+        <li><a href="https://flowers.inria.fr/choreo/doc/#">choreography_dataset 1. documentation</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        © Copyright 2012, Olivier Mangin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><span id="buffer-extension-hover-button" style="display: none; position: absolute; z-index: 8675309; width: 100px; height: 25px; opacity: 0.9; cursor: pointer; background-image: url(chrome-extension://noojglkidnpfjbincgijbaiedldjfbhh/data/shared/img/buffer-hover-icon@2x.png); background-size: 100px 25px;"></span></body></html>
