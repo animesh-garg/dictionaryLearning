@@ -10,6 +10,7 @@
 function D = computeDissimilarity(dissimilarityType,X,Y)
 
 if nargin < 3
+    fprintf('Setting Y=X, because only two inputs provided');
     Y = X;
 end
 
@@ -54,7 +55,35 @@ elseif strcmpi(dissimilarityType,'KL')
             D(i,j) = sum(Y(:,j) .* log2((Y(:,j)+eps) ./ (X(:,i) + eps)));
         end
     end
+
+elseif strcmpi(dissimilarityType,'KL_multi')
+    if ~iscell(X) || ~iscell(Y)
+        fprintf ('Input data not in cell arrays for multidim KL div. \n');
+    end
+    M = size(X,2);
+    N = size(Y,2);
     
+    for i = 1:M
+        x = X{i};
+        SigmaX = cov(x); 
+        muX = mean(x)';
+        dim = size(x,2);
+        for j = 1: i                        
+            y = Y{j};
+            SigmaY = cov(y);
+            muY = mean(y)';        
+            
+            d_ij = 0.5*(trace(pinv(SigmaY)*SigmaX)+ (muX-muY)'*pinv(SigmaY)*(muX-muY)...
+                - dim + log(det(SigmaX)/(det(SigmaY)+eps))) ;            
+            d_ji =  0.5*(trace(pinv(SigmaX)*SigmaY)+ (muY-muX)'*pinv(SigmaX)*(muY-muX)...
+                - dim + log(det(SigmaY)/(det(SigmaX)+eps))) ;            
+            
+            D(i,j) = d_ji + d_ij;            
+            if i ~=j
+                D(j,i) = d_ji + d_ij;
+            end
+        end
+    end
 else
     
     error('Unknown dissimilarity type!');
