@@ -19,7 +19,7 @@
 % clusterCenters: array of indices of representatives which become cluster
 % centers
 %--------------------------------------------------------------------------
-% Copyright @ Ehsan Elhamifar, 2014
+% Copyright @ Ehsan Elhamifar, 2014/Animesh Garg, 2014
 %--------------------------------------------------------------------------
 
 clc, clear all
