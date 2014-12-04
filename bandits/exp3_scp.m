@@ -10,6 +10,7 @@ end
 
 for t = 1:T
     %% predict a length m sequence L_t (sampling with replacement)
+    rng(1)
     [Lt_idx, ~] = datasample([1:size(S,2)],m,'Replace', true, 'Weights', p{t});
     
     %Lt = S(Lt_idx);

@@ -5,9 +5,9 @@
 %Add Utils
 addpath(genpath('../utils'));
 
-%dissimilarityType = 'cbdtw'; % type of pairwise dissimilarities
-dissimilarityType = 'KL_multi';
-debug = false;
+dissimilarityType = 'cbdtw'; % type of pairwise dissimilarities
+%dissimilarityType = 'KL_multi';
+debug = true;
 
 %Add Data
 [X,Y] = loadExamples('uci'); %each time series data point is dxN
@@ -68,7 +68,7 @@ parfor t = 1:length(T)
     % Lt is the returned size m dictionary.
     [temp,~]= exp3_scp(Xtest, m, k, D, T(t));
     F(t) = mean(temp);
-    fprintf('Mean Score after %4d trials :%5f \n', t, mean(temp));    
+    fprintf('Mean Score after %4d trials :%5f \n', T(t), mean(temp));    
 end
 
 plot(T,F,'LineWidth',5);
