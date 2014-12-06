@@ -7,7 +7,7 @@
 % Copyright @ Animesh Garg, 2014
 %--------------------------------------------------------------------------
 
-function D = computeDissimilarity(dissimilarityType,X,Y)
+function D = computeDissimilarity(dissimilarityType,X,Y, parallelized)
 
 if nargin < 3
     fprintf('Setting Y=X, because only two inputs provided');
@@ -56,33 +56,63 @@ elseif strcmpi(dissimilarityType,'KL')
         end
     end
 
-elseif strcmpi(dissimilarityType,'KL_multi')
+elseif strcmpi(dissimilarityType,'KL_multi')    
+    if ~exist('parallelized','var')
+        parallelized = true;
+    end
+    
     if ~iscell(X) || ~iscell(Y)
         fprintf ('Input data not in cell arrays for multidim KL div. \n');
     end
     M = size(X,2);
     N = size(Y,2);
     
-    for i = 1:M
-        x = X{i}'; %Nxd
-        SigmaX = cov(x); 
-        muX = mean(x)';
-        dim = size(x,2);
-        for j = 1: i                        
-            y = Y{j}';
-            SigmaY = cov(y);
-            muY = mean(y)';        
-            
-            d_ij = 0.5*(trace(pinv(SigmaY)*SigmaX)+ (muX-muY)'*pinv(SigmaY)*(muX-muY)...
-                - dim + log(det(SigmaX)/(det(SigmaY)+eps))) ;            
-            d_ji =  0.5*(trace(pinv(SigmaX)*SigmaY)+ (muY-muX)'*pinv(SigmaX)*(muY-muX)...
-                - dim + log(det(SigmaY)/(det(SigmaX)+eps))) ;            
-            
-            D(i,j) = d_ji + d_ij;            
-            if i ~=j
-                D(j,i) = d_ji + d_ij;
+    if ~parallelized %old naive implementation
+        for i = 1:M
+            x = X{i}'; %Nxd
+            SigmaX = cov(x); 
+            muX = mean(x)';
+            dim = size(x,2);
+            for j = 1: i                        
+                y = Y{j}';
+                SigmaY = cov(y);
+                muY = mean(y)';        
+
+                d_ij = 0.5*(trace(pinv(SigmaY)*SigmaX)+ (muX-muY)'*pinv(SigmaY)*(muX-muY)...
+                    - dim + log(det(SigmaX)/(det(SigmaY)+eps))) ;            
+                d_ji =  0.5*(trace(pinv(SigmaX)*SigmaY)+ (muY-muX)'*pinv(SigmaX)*(muY-muX)...
+                    - dim + log(det(SigmaY)/(det(SigmaX)+eps))) ;            
+
+                D(i,j) = d_ji + d_ij;            
+                if i ~=j
+                    D(j,i) = d_ji + d_ij;
+                end
             end
         end
+        
+    else
+        %parallel version
+        parfor i = 1:M
+            tempDist = zeros(1,N);
+            x = X{i}'; %Nxd
+            SigmaX = cov(x); 
+            muX = mean(x)';
+            dim = size(x,2);
+
+            for j = 1: N                        
+                y = Y{j}';
+                SigmaY = cov(y);
+                muY = mean(y)';        
+
+                d_ij = 0.5*(trace(pinv(SigmaY)*SigmaX)+ (muX-muY)'*pinv(SigmaY)*(muX-muY)...
+                    - dim + log(det(SigmaX)/(det(SigmaY)+eps))) ;            
+                d_ji =  0.5*(trace(pinv(SigmaX)*SigmaY)+ (muY-muX)'*pinv(SigmaX)*(muY-muX)...
+                    - dim + log(det(SigmaY)/(det(SigmaX)+eps))) ;                        
+                
+                tempDist(j) = d_ji + d_ij;                        
+            end
+            D(i,:)= tempDist;
+        end   
     end
     
 elseif strcmpi(dissimilarityType,'cbdtw')
@@ -90,8 +120,7 @@ elseif strcmpi(dissimilarityType,'cbdtw')
         fprintf ('Input data not in cell arrays for multidim CB DTW. \n');
     end
     M = size(X,2);
-    N = size(Y,2);
-    
+    N = size(Y,2);    
     parfor i = 1:M
         tempDist = zeros(1,N);
         x = X{i}';        
