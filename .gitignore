@@ -2,3 +2,17 @@
 lab-updates/*
 
 *.m~
+
+bandits/results/compare_KL_cb_debug.png
+
+bandits/results/compare_Dkl_sqrt_sqrtN.png
+
+bandits/results/uci_KL_m25_exp3_debug_submodF_sqrtD_sortArray.png
+
+bandits/results/uci_DTW_m25_exp3_debug.png
+
+bandits/results/uci_KL_m25_exp3_debug_submodF.png
+
+bandits/results/uci_KL_m25_exp3_debug.png
+
+bandits/results/uci_KL_m25_exp3_full_submodF.png
