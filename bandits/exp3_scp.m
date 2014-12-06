@@ -10,7 +10,7 @@ end
 
 for t = 1:T
     %% predict a length m sequence L_t (sampling with replacement)
-    rng(1)
+    rng(10)
     [Lt_idx, ~] = datasample([1:size(S,2)],m,'Replace', true, 'Weights', p{t});
     
     %Lt = S(Lt_idx);
@@ -20,7 +20,7 @@ for t = 1:T
     
     %% discounted cumulative benefit for each s in S
     Rt = zeros(1,size(S,2));
-    for s = 1:size(S,2)       
+    parfor s = 1:size(S,2)       
         for i = 1:m
             Lt_i = Lt_idx(1:i);
             %if s is in Lt_i, then diff is 0
@@ -33,9 +33,10 @@ for t = 1:T
     %% Update the prior using exponential weights
     maxR = max(Rt);
     lt = maxR*ones(1,size(S,2))- Rt;
-    
+    k = size(S,2);
+    eta = sqrt((2*log(k))/(T*k));
     if t<T
-        p{t+1} = exp(lt)./sum(exp(lt));
+        p{t+1} = exp(eta.*lt)./sum(exp(eta.*lt));
     end
 end
 
