@@ -9,7 +9,7 @@ addpath(genpath('../utils'));
 
 %dissimilarityType = 'cbdtw'; % type of pairwise dissimilarities
 dissimilarityType = 'KL_multi';
-debug = false;
+debug = true;
 getBound = false; 
 
 %Add Data
@@ -19,44 +19,53 @@ getBound = false;
 %% Calculate dissimilarity
 if debug == true
     rng(1);
-    nSamples = 500; %only test a and b
+    nSamples = 100; 
     arrTest = randperm (size(X,2));
-    arrTest = arrTest(1:nSamples);
-    %arrTest = sort (arrTest(1:nSamples));
+    %arrTest = arrTest(1:nSamples); %Not sure if sorting helps
+    arrTest = sort (arrTest(1:nSamples));
     Xtest = X(arrTest);
+    Ytest = Y.charlabels(arrTest);
     if exist(['D_',dissimilarityType,'_',int2str(nSamples),'.mat'],'file')==2
         D = load (['D_',dissimilarityType,'_',int2str(nSamples),'.mat'],'D');
         D = D.D;
     else
+        tic
         D = computeDissimilarity(dissimilarityType, Xtest, Xtest);
+        fprintf('Time to compute Similarity Matrix for %d Samples: %5f\n', nSamples, toc);
         D = D ./ max(max(D));%normalize
         save(['D_',dissimilarityType,'_',int2str(nSamples),'.mat'],'D');
     end
 else
     Xtest = X;
+    Ytest = Y.charlabels;
     if exist(['D_',dissimilarityType,'.mat'],'file')==2
         D = load(['D_',dissimilarityType,'.mat'],'D');
         D = D.D;
     else
+        tic
         D = computeDissimilarity(dissimilarityType, Xtest, Xtest);
+        fprintf('Time to compute Similarity Matrix for all Data: %5f\n', toc);
         D = D ./ max(max(D)); %normalize
         save(['D_',dissimilarityType,'.mat'],'D');
     end
 end
 
-%D = real(sqrt(D));
+D = real(sqrt(D));
 %% Run exp3-scp - Context free stochastic bandit setting 
 m = 25;
 k = 20;%total 20 chars in dataset.
-T = 100;
+T = 1000;
 
 % Lt is the returned size m dictionary.
-[F,Lt_idx]= exp3_scp(Xtest, m, k, D,T);
+tic
+[F,Lt_idx] = exp3_scp(Xtest, m, k, D,T);
 fprintf('Mean Score after %4d trials:%5f \n', T,  mean(F));
-
+fprintf('Time to compute dictionary using Submod-EXP3: %5f\n', toc);
+fprintf('Using Dissimilarity Type: %s \n', dissimilarityType);
 %% retrieve results
 Lt = Xtest(Lt_idx);
-Lt_labels = cell2mat(Y.key(Y.charlabels(Lt_idx)));
+%Lt_labels = cell2mat(Y.key(Ytest.charlabels(Lt_idx)));
+Lt_labels = cell2mat(Y.key(Ytest(Lt_idx)));
 fprintf('\n');
 fprintf('Number of distinct elements retrieved: %3d \n', length((unique(Lt_labels))));
 fprintf('Following distinct elements were retrieved: ');

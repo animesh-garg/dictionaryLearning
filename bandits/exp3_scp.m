@@ -3,14 +3,23 @@ function [F, Lt_idx] = exp3_scp(S, m, k, D, T)
 % Algorithm inputs: S (set of all elements), m length of output list, k
 % best list size (smallest), 
 
-p{1} = ones(size(S,2),1); %initialize with uniform weights
+p{1} = (1/size(S,2))*ones(1,size(S,2)); %initialize with uniform weights
 if ~exist('T','var')
     T= 100; 
 end
 
+rng(10)%fix first random datasample
 for t = 1:T
-    %% predict a length m sequence L_t (sampling with replacement)
-    rng(10)
+    %% Debug plot distribution before moving on
+    bar(p{t});
+    ylim([0, 1]); 
+    xlim([0,size(S,2)]);
+    if rem(50,t)==0
+        pause()
+    end
+    hold on
+    
+    %% predict a length m sequence L_t (sampling with replacement)    
     [Lt_idx, ~] = datasample([1:size(S,2)],m,'Replace', true, 'Weights', p{t});
     
     %Lt = S(Lt_idx);
@@ -29,7 +38,7 @@ for t = 1:T
             end
         end        
     end
-    
+       
     %% Update the prior using exponential weights
     maxR = max(Rt);
     lt = maxR*ones(1,size(S,2))- Rt;
@@ -41,5 +50,5 @@ for t = 1:T
 end
 
 Lt = S(Lt_idx);
-
+hold off
 end

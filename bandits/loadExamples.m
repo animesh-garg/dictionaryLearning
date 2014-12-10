@@ -33,6 +33,8 @@ elseif strcmpi(dataFolder,'uci')
         temp = X{i}(1:2,:);
         temp = cumsum(temp,2);        
         X{i} = vertcat(temp, X{i}(3,:));
+        % we wil have 5 variables
+        %X{i} = vertcat(temp, X{i}(1:2,:), X{i}(3,:));
     end
     Y = data.consts;            
 end
